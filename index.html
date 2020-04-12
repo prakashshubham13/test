@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GLITCH LIQUID DISTORTION SLIDER</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="circletype.min.js"></script>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <style>html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: 4000px;
+                background: #161616;
+            }
+            
+            .circular-text {
+                position: fixed;
+                top: 23%;
+                left: 10%;
+                transform: translate(-50%, -50%);
+                color: rgba(255, 255, 255, 0);
+                font-size: 14px;
+                font-weight: bolder;
+                font-family: "Monument Extended";
+                transition: 0.5s ease-out;
+                -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+            }
+            
+            .arrow {
+                position: fixed;
+                top: 35%;
+                left: 10%;
+                transform: translate(-50%, -50%);
+            }
+            
+            ion-icon {
+                font-size: 100px;
+                color: white;
+            }
+            
+            
+            .diff{
+position: absolute;
+z-index: 777;
+            }
+            </style>
+    </head>
+    <body>
+    
+        <main>
+            <div class="slider">
+                <div id="rgbKineticSlider" class="rgbKineticSlider"></div>
+                <div class="diff">
+                    <div class="circular-text">
+                        <span id="rotated"
+                            >stone • fox • swim • tapcheck • wolves • fox • swim • tapcheck
+                            • wolves</span
+                        >
+                    </div>
+                    <div class="arrow">
+                        <ion-icon name="arrow-down"></ion-icon>
+                    </div></div>
+                <nav>
+                    <a href="#" class="main-nav prev" data-nav="previous">Prev <span></span></a>
+                    <a href="#" class="main-nav next" data-nav="next">Next <span></span></a>
+                </nav>
+            </div>
+        </main>
+
+        <!-- TweenMax -->
+        <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/TweenMax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/imagesLoaded.pkgd.min.js"></script>
+
+        <!-- Pixi JS -->
+        <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/libs/pixi-filters.min.js"></script>
+
+        <!-- Slider Plugin -->
+        <script src="https://cdn.jsdelivr.net/gh/hmongouachon/rgbKineticSlider/js/rgbKineticSlider.js"></script>
+
+        <script>
+            const images = ["img-1.jpg", "img-2.jpg", "img-3.jpg"];
+            const texts = [["UNLOCKED"], ["OFFBEAT"], ["ASTERISKS"]];
+
+            rgbKineticSlider = new rgbKineticSlider({
+                slideImages: images,
+                itemsTitles: texts,
+
+                backgroundDisplacementSprite:
+                    "http://hmongouachon.com/_demos/rgbKineticSlider/map-9.jpg",
+                cursorDisplacementSprite:
+                    "http://hmongouachon.com/_demos/rgbKineticSlider/displace-circle.png",
+                cursorScaleIntensity: 0.6,
+                cursorMomentum: 0.14,
+
+                swipe: true,
+                swipeDistance: window.innerWidth * 0.4,
+                swipeScaleIntensity: 2,
+
+                slideTransitionDuration: 0.8,
+                transitionScaleIntensity: 30,
+                transitionScaleAmplitude: 160,
+
+                nav: true,
+                navElement: ".main-nav",
+
+                imagesRgbEffect: false,
+                imagesRgbIntensity: 4,
+                navImagesRgbIntensity: 120,
+
+                textsDisplay: true,
+                textTitleSize: 144,
+                textsTiltEffect: true,
+                googleFonts: ["Playfair Display:400"],
+                textsRgbEffect: true,
+                textsRgbIntensity: 1,
+            });
+        </script>
+         <script>
+            const circleType = new CircleType(
+                document.getElementById("rotated")
+            ).radius(80);
+    
+            $(window).scroll(function() {
+                var offset = $(window).scrollTop();
+                offset = offset * 0.4;
+    
+                $(".circular-text").css({
+                    "-moz-transform": "rotate(" + offset + "deg)",
+                    "-webkit-transform": "rotate(" + offset + "deg)",
+                    "-o-transform": "rotate(" + offset + "deg)",
+                    "-ms-transform": "rotate(" + offset + "deg)",
+                    transform: "rotate(" + offset + "deg)"
+                });
+            });
+        </script>
+    </body>
+</html>
